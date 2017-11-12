@@ -1,10 +1,11 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-# spotify-wrapper
+# Spotify Wrapper
 
-> A small library that wrap the spotify api
+A small library that wrap the [Spotify Web API](https://developer.spotify.com/web-api/)
 
-background details relevant to understanding what this module does
+## Getting Started
+The following commands are used to put the app up and running! :D
 
 ## Usage
 
