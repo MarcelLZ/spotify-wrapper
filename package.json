@@ -7,7 +7,8 @@
   "author": "Marcel Zanluca <marcel.zanluca@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "./node_modules/.bin/babel --out-dir lib src",
+    "clear": "rimraf lib",
+    "build": "npm run clear && ./node_modules/.bin/babel --out-dir lib src",
     "lint": "./node_modules/.bin/eslint",
     "prepush": "npm run lint && npm run test:coverage",
     "test": "./node_modules/.bin/mocha tests/**/*.spec.js --require babel-register",
@@ -54,6 +55,7 @@
     "mocha": "^4.0.1",
     "node-fetch": "^1.7.3",
     "nyc": "^11.3.0",
+    "rimraf": "^2.6.2",
     "sinon": "^4.1.2",
     "sinon-chai": "^2.14.0",
     "sinon-stub-promise": "^4.0.0",
