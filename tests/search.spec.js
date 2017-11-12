@@ -9,7 +9,7 @@ import {
   searchArtists,
   searchTrack,
   searchPlaylist
-} from '../src'
+} from '../src/search'
 
 chai.use(sinonChai)
 sinonStubPromise(sinon)
@@ -21,7 +21,7 @@ global.fetch = require('node-fetch')
 // search by tracks
 // search by playlist
 
-describe('Spotify Wrapper', () => {
+describe('Search', () => {
   let fetchedStub
   let promise
   beforeEach(() => {
