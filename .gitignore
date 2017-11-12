@@ -19,7 +19,13 @@ coverage
 
 # nyc test coverage
 .nyc_output
-/coverage
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Result of build command
+dist
+lib
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
