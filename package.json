@@ -1,0 +1,52 @@
+{
+  "name": "spotify-wrapper",
+  "version": "1.0.0",
+  "description": "A small library that wrap the spotify api",
+  "main": "index.js",
+  "repository": "git@github.com:MarcelLZ/spotify-wrapper.git",
+  "author": "Marcel Zanluca <marcel.zanluca@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint src",
+    "prepush": "npm run lint && npm run test:coverage",
+    "test": "./node_modules/.bin/mocha tests/**/*.spec.js --require babel-register",
+    "test:watch": "npm run test -- --watch",
+    "test:coverage": "nyc npm test"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "functions": 80,
+    "lines": 80,
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "tests/**"
+    ]
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "describe",
+      "it",
+      "expect",
+      "context",
+      "mount",
+      "jest"
+    ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.2",
+    "babel-preset-env": "^1.6.1",
+    "chai": "^4.1.2",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0",
+    "standard": "^10.0.3"
+  }
+}
