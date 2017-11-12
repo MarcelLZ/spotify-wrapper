@@ -3,13 +3,7 @@ import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 import sinonStubPromise from 'sinon-stub-promise'
 
-import {
-  search,
-  searchAlbums,
-  searchArtists,
-  searchTrack,
-  searchPlaylist
-} from '../src/search'
+import SpotifyWrapper from '../src/index'
 
 chai.use(sinonChai)
 sinonStubPromise(sinon)
@@ -22,9 +16,13 @@ global.fetch = require('node-fetch')
 // search by playlist
 
 describe('Search', () => {
+  let spotify
   let fetchedStub
   let promise
   beforeEach(() => {
+    spotify = new SpotifyWrapper({
+      token: 'token'
+    })
     fetchedStub = sinon.stub(global, 'fetch')
     promise = fetchedStub.returnsPromise()
   })
@@ -34,81 +32,36 @@ describe('Search', () => {
   })
 
   describe('smoke tests', () => {
-    it('should exist the search method', () => {
-      expect(search).to.exist
+    it('should exist the `albums` method', () => {
+      expect(spotify.search.albums).to.exist
     })
 
-    it('should exist the searchAlbums method', () => {
-      expect(searchAlbums).to.exist
+    it('should exist the `artists` method', () => {
+      expect(spotify.search.artist).to.exist
     })
 
-    it('should exist the searchArtists method', () => {
-      expect(searchArtists).to.exist
+    it('should exist the `track` method', () => {
+      expect(spotify.search.track).to.exist
     })
 
-    it('should exist the searchTracks method', () => {
-      expect(searchTrack).to.exist
-    })
-
-    it('should exist the searchPlaylist method', () => {
-      expect(searchPlaylist).to.exist
-    })
-  })
-
-  describe('search (generic)', () => {
-    it('should call fecth function', () => {
-      search()
-
-      expect(fetchedStub).to.have.been.called.calledOnce
-    })
-
-    it('should receive the correct url to fetch', () => {
-      context('passing one type', () => {
-        search('Shontelle', 'artist')
-
-        expect(fetchedStub).to.have.been.calledWith(
-          'https://api.spotify.com/v1/search?q=Shontelle&type=artist'
-        )
-
-        search('Shontelle', 'album')
-
-        expect(fetchedStub).to.have.been.calledWith(
-          'https://api.spotify.com/v1/search?q=Shontelle&type=album'
-        )
-      })
-
-      context('passing more than one type', () => {
-        search('Shontelle', ['artist', 'album'])
-
-        expect(fetchedStub).to.have.been.calledWith(
-          'https://api.spotify.com/v1/search?q=Shontelle&type=artist,album'
-        )
-      })
-    })
-
-    it('should return JSON date from the Promise', () => {
-      const expectReturn = { 'body': 'json' }
-      promise.resolves(expectReturn)
-
-      const artist = search('Shontelle', 'artist')
-
-      expect(artist.resolveValue).to.be.eql(expectReturn)
+    it('should exist the `playlist` method', () => {
+      expect(spotify.search.playlist).to.exist
     })
   })
 
   describe('search by artists', () => {
     it('should call fetch function', () => {
-      searchArtists('Shontelle')
+      spotify.search.artist('Shontelle')
       expect(fetchedStub).to.have.been.calledOnce
     })
 
     it('should call fetch with the correct url', () => {
-      searchArtists('Shontelle')
+      spotify.search.artist('Shontelle')
       expect(fetchedStub).to.have.been.calledWith(
         'https://api.spotify.com/v1/search?q=Shontelle&type=artist'
       )
 
-      searchArtists('Muse')
+      spotify.search.artist('Muse')
       expect(fetchedStub).to.have.been.calledWith(
         'https://api.spotify.com/v1/search?q=Muse&type=artist'
       )
@@ -117,17 +70,17 @@ describe('Search', () => {
 
   describe('search by albums', () => {
     it('should call fetch function', () => {
-      searchAlbums('Shontelle')
+      spotify.search.albums('Shontelle')
       expect(fetchedStub).to.have.been.calledOnce
     })
 
     it('should call fetch with the correct url', () => {
-      searchAlbums('Shontelle')
+      spotify.search.albums('Shontelle')
       expect(fetchedStub).to.have.been.calledWith(
         'https://api.spotify.com/v1/search?q=Shontelle&type=album'
       )
 
-      searchAlbums('Muse')
+      spotify.search.albums('Muse')
       expect(fetchedStub).to.have.been.calledWith(
         'https://api.spotify.com/v1/search?q=Muse&type=album'
       )
@@ -136,17 +89,17 @@ describe('Search', () => {
 
   describe('search by tracks', () => {
     it('should call fetch function', () => {
-      searchTrack('Shontelle')
+      spotify.search.track('Shontelle')
       expect(fetchedStub).to.have.been.calledOnce
     })
 
     it('should call fetch with the correct url', () => {
-      searchTrack('Shontelle')
+      spotify.search.track('Shontelle')
       expect(fetchedStub).to.have.been.calledWith(
         'https://api.spotify.com/v1/search?q=Shontelle&type=track'
       )
 
-      searchTrack('Muse')
+      spotify.search.track('Muse')
       expect(fetchedStub).to.have.been.calledWith(
         'https://api.spotify.com/v1/search?q=Muse&type=track'
       )
@@ -155,17 +108,17 @@ describe('Search', () => {
 
   describe('search by play list', () => {
     it('should call fetch function', () => {
-      searchPlaylist('Shontelle')
+      spotify.search.playlist('Shontelle')
       expect(fetchedStub).to.have.been.calledOnce
     })
 
     it('should call fetch with the correct url', () => {
-      searchPlaylist('Shontelle')
+      spotify.search.playlist('Shontelle')
       expect(fetchedStub).to.have.been.calledWith(
         'https://api.spotify.com/v1/search?q=Shontelle&type=playlist'
       )
 
-      searchPlaylist('Muse')
+      spotify.search.playlist('Muse')
       expect(fetchedStub).to.have.been.calledWith(
         'https://api.spotify.com/v1/search?q=Muse&type=playlist'
       )
