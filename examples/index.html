@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Spotify Wrapper</title>
+</head>
+<body>
+  <div data-root="albums"></div>
+
+  <script src="../dist/spotify-wrapper.umd.js"></script>
+  <script>
+    (function (document, spotifyWrapper) {
+      const albumsEl = document.querySelector("[data-root='albums']")
+      const albums = spotifyWrapper.searchAlbums('Shontelle')
+
+      albums.then(({ error, albums }) => {
+        if (error) {
+          albumsEl.innerHTML = '<span>No albums! =/</span>'
+          return
+        }
+
+        let markup = albums.items
+          .map(album => `<img src='${album.images[0].url}' alt='${album.name}' />`)
+          .join('')
+
+        albumsEl.innerHTML = markup
+      })
+    })(document, spotifyWrapper)
+  </script>
+</body>
+</html>
