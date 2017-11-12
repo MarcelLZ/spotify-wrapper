@@ -155,7 +155,7 @@ spotify.search.playlists('Happy Day')
   })
 ```
 
-### album.getAlbum(id)
+### album.get(id)
 
 > Search for informations about a specific Album with provided id. Test in [Spotify Web Console](https://developer.spotify.com/web-api/console/get-album/).
 
@@ -163,32 +163,32 @@ spotify.search.playlists('Happy Day')
 
 | Argument | Type    | Options           |
 |----------|---------|-------------------|
-|`id`   |*string* | 'Specific id'|
+|`id`      |*string* | 'Specific id'     |
 
 
 **Example**
 
 ```js
-spotify.album.getAlbum('4aawyAB9vmqN3uQ7FjRGTy')
+spotify.album.get('4aawyAB9vmqN3uQ7FjRGTy')
   .then(data => {
     // do what you want with the data
   })
 ```
 
-### album.getAlbums(ids)
+### album.getAll(ids)
 
 > Search for informations about some Albums with all id's. Test in [Spotify Web Console](https://developer.spotify.com/web-api/console/get-several-albums/).
 
 **Arguments**
 
-| Argument | Type    | Options           |
-|----------|---------|-------------------|
-|`ids`   |*Array of strings* | ['id1', 'id2']|
+| Argument | Type              | Options           |
+|----------|-------------------|-------------------|
+|`ids`     |*Array of strings* | ['id1', 'id2']    |
 
 **Example**
 
 ```js
-spotify.album.getAlbums(['4aawyAB9vmqN3uQ7FjRGTy', '1A2GTWGtFfWp7KSQTwWOyo'])
+spotify.album.getAll(['4aawyAB9vmqN3uQ7FjRGTy', '1A2GTWGtFfWp7KSQTwWOyo'])
   .then(data => {
     // do what you want with the data
   })

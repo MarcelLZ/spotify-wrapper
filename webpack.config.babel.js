@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: PATH.DIST,
     libraryTarget: 'umd',
-    library: 'spotifyWrapper'
+    library: 'SpotifyWrapper'
   },
   devtool: 'source-map',
   module: {

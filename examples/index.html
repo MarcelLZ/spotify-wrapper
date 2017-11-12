@@ -11,9 +11,13 @@
 
   <script src="../dist/spotify-wrapper.umd.js"></script>
   <script>
-    (function (document, spotifyWrapper) {
+    (function (document, SpotifyWrapper) {
+
+      const spotify = new SpotifyWrapper({
+        token: 'BQCjlNC3x8li4BH0oLP8nfQ61qzijh6eA-dTu1aQyYh4X0vgcujP7weNMuIpQrGX_3_1yTpu2zWnlBa_GkEji0aleR-t5_OEv-IyUQqO8bqXfuiJk-g6iZ-VZKgGQAYR2_ptPkXbCcVObZKT'
+      })
       const albumsEl = document.querySelector("[data-root='albums']")
-      const albums = spotifyWrapper.searchAlbums('Shontelle')
+      const albums = spotify.search.albums('Shontelle')
 
       albums.then(({ error, albums }) => {
         if (error) {
@@ -27,7 +31,8 @@
 
         albumsEl.innerHTML = markup
       })
-    })(document, spotifyWrapper)
+
+    })(document, SpotifyWrapper)
   </script>
 </body>
 </html>

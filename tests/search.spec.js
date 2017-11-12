@@ -37,31 +37,31 @@ describe('Search', () => {
     })
 
     it('should exist the `artists` method', () => {
-      expect(spotify.search.artist).to.exist
+      expect(spotify.search.artists).to.exist
     })
 
-    it('should exist the `track` method', () => {
-      expect(spotify.search.track).to.exist
+    it('should exist the `tracks` method', () => {
+      expect(spotify.search.tracks).to.exist
     })
 
-    it('should exist the `playlist` method', () => {
-      expect(spotify.search.playlist).to.exist
+    it('should exist the `playlists` method', () => {
+      expect(spotify.search.playlists).to.exist
     })
   })
 
   describe('search by artists', () => {
     it('should call fetch function', () => {
-      spotify.search.artist('Shontelle')
+      spotify.search.artists('Shontelle')
       expect(fetchedStub).to.have.been.calledOnce
     })
 
     it('should call fetch with the correct url', () => {
-      spotify.search.artist('Shontelle')
+      spotify.search.artists('Shontelle')
       expect(fetchedStub).to.have.been.calledWith(
         'https://api.spotify.com/v1/search?q=Shontelle&type=artist'
       )
 
-      spotify.search.artist('Muse')
+      spotify.search.artists('Muse')
       expect(fetchedStub).to.have.been.calledWith(
         'https://api.spotify.com/v1/search?q=Muse&type=artist'
       )
@@ -89,17 +89,17 @@ describe('Search', () => {
 
   describe('search by tracks', () => {
     it('should call fetch function', () => {
-      spotify.search.track('Shontelle')
+      spotify.search.tracks('Shontelle')
       expect(fetchedStub).to.have.been.calledOnce
     })
 
     it('should call fetch with the correct url', () => {
-      spotify.search.track('Shontelle')
+      spotify.search.tracks('Shontelle')
       expect(fetchedStub).to.have.been.calledWith(
         'https://api.spotify.com/v1/search?q=Shontelle&type=track'
       )
 
-      spotify.search.track('Muse')
+      spotify.search.tracks('Muse')
       expect(fetchedStub).to.have.been.calledWith(
         'https://api.spotify.com/v1/search?q=Muse&type=track'
       )
@@ -108,17 +108,17 @@ describe('Search', () => {
 
   describe('search by play list', () => {
     it('should call fetch function', () => {
-      spotify.search.playlist('Shontelle')
+      spotify.search.playlists('Shontelle')
       expect(fetchedStub).to.have.been.calledOnce
     })
 
     it('should call fetch with the correct url', () => {
-      spotify.search.playlist('Shontelle')
+      spotify.search.playlists('Shontelle')
       expect(fetchedStub).to.have.been.calledWith(
         'https://api.spotify.com/v1/search?q=Shontelle&type=playlist'
       )
 
-      spotify.search.playlist('Muse')
+      spotify.search.playlists('Muse')
       expect(fetchedStub).to.have.been.calledWith(
         'https://api.spotify.com/v1/search?q=Muse&type=playlist'
       )

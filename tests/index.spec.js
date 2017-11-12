@@ -3,7 +3,7 @@ import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 import sinonStubPromise from 'sinon-stub-promise'
 
-import SpotifyWrapper from '../src/index'
+import SpotifyWrapper from '../src/spotify-wrapper'
 
 chai.use(sinonChai)
 sinonStubPromise(sinon)
