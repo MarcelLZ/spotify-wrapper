@@ -2,6 +2,7 @@
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Build Status](https://travis-ci.org/MarcelLZ/spotify-wrapper.svg?branch=master)](https://travis-ci.org/MarcelLZ/spotify-wrapper)
+[![Coverage Status](https://coveralls.io/repos/github/MarcelLZ/spotify-wrapper/badge.svg)](https://coveralls.io/github/MarcelLZ/spotify-wrapper)
 
 A small library that wrap the [Spotify Web API](https://developer.spotify.com/web-api/)
 
