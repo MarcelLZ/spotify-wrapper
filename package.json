@@ -28,6 +28,8 @@
   "standard": {
     "parser": "babel-eslint",
     "globals": [
+      "beforeEach",
+      "afterEach",
       "describe",
       "it",
       "expect",
